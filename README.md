@@ -138,30 +138,22 @@ SIEM-Lab-Wazuh/
 │   ├── SIEM_Overview.md
 │   └── Wazuh_Architecture.md
 │
-├── 02_Setup/
-│   ├── Lab_Architecture.md
-│   ├── VirtualBox_Setup.md
-│   ├── Ubuntu_Server.md
-│   ├── Windows_Agent.md
-│   └── Network_Configuration.md
-│
-├── 03_Wazuh/
+├── 02_Wazuh/
 │   ├── Installation.md
 │   ├── Agent_Configuration.md
 │   ├── Dashboard.md
-│   └── Troubleshooting.md
+│   └── Configuration.md
 │
-├── 04_Log_Analysis/
+├── 03_Log_Analysis/
 │   ├── Windows_Event_Logs.md
-│   ├── Linux_System_Logs.md
 │   ├── Sysmon.md
-│   └── Alert_Analysis.md
+│   ├── Alert_Analysis.md
+│   └── Event_Correlation.md
 │
-├── 05_CheatSheets/
+├── 04_CheatSheets/
 │   ├── Wazuh_Commands.md
 │   ├── Windows_Event_IDs.md
-│   ├── Sysmon_Event_IDs.md
-│   └── Linux_Log_Locations.md
+│   └── Sysmon_Event_IDs.md
 │
 ├── Screenshots/
 │   ├── Installation/
@@ -170,7 +162,6 @@ SIEM-Lab-Wazuh/
 │
 └── Resources/
     └── References.md
-
 ```
 
 # License
