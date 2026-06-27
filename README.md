@@ -116,6 +116,91 @@ The learning resources used throughout this project include official documentati
 
 ---
 
+## Repo fileflow
+
+SOC-Home-Lab/
+│
+├── README.md
+├── LICENSE
+│
+├── 01_Introduction/
+│   ├── SOC_Overview.md
+│   ├── SIEM_Basics.md
+│   ├── SOC_Workflow.md
+│   └── MITRE_ATTACK_Overview.md
+│
+├── 02_Lab_Setup/
+│   ├── Lab_Architecture.md
+│   ├── VirtualBox_Setup.md
+│   ├── Windows_VM.md
+│   ├── Ubuntu_Server.md
+│   ├── Kali_Linux.md
+│   └── Network_Configuration.md
+│
+├── 03_Wazuh/
+│   ├── Installation.md
+│   ├── Agent_Configuration.md
+│   ├── Dashboard_Configuration.md
+│   ├── Rule_Management.md
+│   └── Troubleshooting.md
+│
+├── 04_Sysmon/
+│   ├── Installation.md
+│   ├── Configuration.md
+│   ├── Event_ID_Reference.md
+│   └── Sysmon_vs_Windows_Logs.md
+│
+├── 05_Attack_Simulations/
+│   ├── Nmap_Scan.md
+│   ├── Failed_Login.md
+│   ├── Brute_Force.md
+│   ├── Reverse_Shell.md
+│   ├── PowerShell_Execution.md
+│   ├── Suspicious_Process.md
+│   └── Web_Attack.md
+│
+├── 06_Detection_Engineering/
+│   ├── Detection_Engineering_Basics.md
+│   ├── Sigma_Rules.md
+│   ├── Custom_Detection_Rules.md
+│   └── MITRE_Mapping.md
+│
+├── 07_Alert_Analysis/
+│   ├── Alert_Investigation.md
+│   ├── Incident_Report_Template.md
+│   ├── IOC_Analysis.md
+│   └── False_Positives.md
+│
+├── 08_Threat_Hunting/
+│   ├── Threat_Hunting_Basics.md
+│   ├── Windows_Event_Log_Analysis.md
+│   ├── Log_Analysis.md
+│   └── Hunting_Scenarios.md
+│
+├── 09_Automation/
+│   ├── Python_Automation.md
+│   ├── Log_Parsing.md
+│   └── Alert_Automation.md
+│
+├── 10_CheatSheets/
+│   ├── Wazuh_Commands.md
+│   ├── Sysmon_Event_IDs.md
+│   ├── Windows_Event_IDs.md
+│   ├── Sigma_Syntax.md
+│   └── MITRE_ATT&CK_CheatSheet.md
+│
+├── Screenshots/
+│   ├── Wazuh/
+│   ├── Sysmon/
+│   ├── Dashboards/
+│   ├── Alerts/
+│   └── Attack_Simulations/
+│
+└── Resources/
+    ├── References.md
+    ├── Useful_Links.md
+    └── Learning_Roadmap.md
+
 ## License
 
 This project is licensed under the MIT License.
