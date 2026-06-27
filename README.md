@@ -125,7 +125,7 @@ The following resources will be used throughout this project:
 
 ---
 
-Repo File Structure 
+Repo File Structure (Detailed) 
 
 ```text
 
