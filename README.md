@@ -138,10 +138,11 @@ SIEM-Lab-Wazuh/
 │   ├── SIEM_Overview.md
 │   └── Wazuh_Architecture.md
 │
-├── 02_Setup/
-│   ├── Lab_Architecture.md
-│   ├── Wazuh_Requirements.md
-│   └── Network_Configuration.md
+02_Setup/
+├── Lab_Architecture.md
+├── Network_Configuration.md
+├── Wazuh_Requirements.md
+└── Challenges_and_Remediation.md
 │
 ├── 03_Wazuh/
 │   ├── Installation.md
