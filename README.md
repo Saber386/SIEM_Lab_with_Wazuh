@@ -148,7 +148,7 @@ SIEM-Lab-Wazuh/
 │   ├── Agent_Configuration.md
 │   ├── Dashboard.md
 │   ├── Configuration.md
-│   └── Troubleshooting.md
+│   
 │
 ├── 04_Detection_and_Analysis/
 │   ├── Windows_Event_Logs.md
