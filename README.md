@@ -43,27 +43,6 @@ This project includes practical implementation of the following technologies:
 
 ---
 
-# Repository Structure
-
-```text
-SIEM-Lab-Wazuh/
-│
-├── README.md
-├── LICENSE
-│
-├── 01_Introduction/
-├── 02_Lab_Setup/
-├── 03_Wazuh/
-├── 04_Log_Collection/
-├── 05_Event_Correlation/
-├── 06_Alert_Analysis/
-├── 07_Sysmon/
-├── 08_CheatSheets/
-├── Screenshots/
-└── Resources/
-```
-
----
 
 # Topics Covered
 
