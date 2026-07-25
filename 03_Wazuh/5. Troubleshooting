@@ -1,1 +1,307 @@
+# Troubleshooting
 
+## Overview
+
+During the deployment of my Wazuh SIEM lab, I encountered several issues related to package management, networking, agent connectivity, and service configuration.
+
+This document records the problems I faced, their root causes, and the solutions that successfully resolved them.
+
+---
+
+# Issue 1: APT Lock During Installation
+
+## Problem
+
+While installing Wazuh, the installation stopped during the Filebeat installation phase with the following message:
+
+```
+Another process is using APT.
+Waiting for it to release the lock.
+```
+
+The installer kept retrying and eventually failed.
+
+<img width="652" height="267" alt="Image" src="https://github.com/user-attachments/assets/89050be7-b6f8-4bc0-990d-0603f7d32186" />
+
+---
+
+## Cause
+
+Ubuntu's automatic update service (`unattended-upgrades`) was running in the background and had locked the package manager.
+
+Since Wazuh also needed access to APT, the installation could not continue.
+
+---
+
+## Resolution
+
+First, I identified the processes using APT.
+
+```bash
+ps -ef | grep -E "apt|dpkg|unattended"
+```
+
+Then I stopped the automatic update services.
+
+```bash
+sudo systemctl stop unattended-upgrades
+sudo systemctl stop apt-daily.service
+sudo systemctl stop apt-daily-upgrade.service
+```
+
+I also terminated any remaining package management processes.
+
+```bash
+sudo pkill -f unattended-upgrade
+sudo pkill -f apt.systemd.daily
+```
+
+Finally, I repaired the package database.
+
+```bash
+sudo dpkg --configure -a
+sudo apt update
+```
+
+After rerunning the installer, the installation completed successfully.
+
+---
+
+# Issue 2: Filebeat and Dashboard Not Installed
+
+## Problem
+
+After installation, the Wazuh Manager and Indexer were running, but the Dashboard and Filebeat services were missing.
+
+Checking the services returned:
+
+```
+Unit wazuh-dashboard.service could not be found. Below is the Screenshot of the terminal where both Wazuh Indexer and Manager were running perfectly while Dashboard and Filebeat wasnt installed
+```
+<img width="1536" height="1152" alt="Image" src="https://github.com/user-attachments/assets/3d2d6d60-6e88-45a2-9c8c-4559f3e0fd5b" />
+---
+
+## Cause
+
+The installation had failed during the Filebeat deployment because of the APT lock.
+
+As a result, only part of the Wazuh stack was installed.
+
+---
+
+## Resolution
+
+After resolving the package manager issue, I reran the installer.
+
+The remaining components were installed successfully, and all Wazuh services became operational.
+
+---
+
+# Issue 3: Windows Agent Not Connecting
+
+## Problem
+
+After installing the Windows Agent, the endpoint did not immediately appear in the dashboard.
+
+---
+
+## Cause
+
+The Wazuh Agent service was installed but was not running.
+
+---
+
+## Resolution
+
+I verified the service.
+
+```powershell
+Get-Service WazuhSvc
+```
+
+Then started it.
+
+```cmd
+NET START WazuhSvc
+```
+
+After refreshing the dashboard, the Windows endpoint appeared as **Active**.
+
+
+---
+
+# Issue 4: Incorrect Service Name
+
+## Problem
+
+While attempting to start the Windows Agent, I initially used:
+
+```powershell
+Start-Service Wazuh-Svc
+```
+
+PowerShell returned an error indicating that the service could not be found.
+
+---
+
+## Cause
+
+The service name was incorrect.
+
+---
+
+## Resolution
+
+The correct service name is:
+
+```cmd
+NET START WazuhSvc
+```
+
+Using the correct service name started the agent successfully.
+
+---
+
+# Issue 5: NAT Networking Prevented Communication
+
+## Problem
+
+Initially, my Ubuntu virtual machine was configured using NAT networking.
+
+Although internet connectivity worked, the Windows host could not communicate with the Wazuh Manager.
+
+---
+
+## Cause
+
+NAT networking isolates the guest machine, preventing direct communication from the host.
+
+---
+
+## Resolution
+
+I powered off the virtual machine and changed the VirtualBox network adapter from **NAT** to **Bridged Adapter**.
+
+After restarting the VM, I verified the new IP address.
+
+```bash
+hostname -I
+```
+
+The Windows Agent was then configured using the new Manager IP.
+
+---
+
+# Issue 6: Agent Became Disconnected
+
+## Problem
+
+After restarting the Ubuntu virtual machine, the Windows endpoint appeared as **Disconnected** in the Wazuh Dashboard.
+
+---
+
+## Cause
+
+The Ubuntu virtual machine received a new IP address through DHCP.
+
+The Windows Agent was still attempting to communicate with the old Manager IP.
+
+---
+
+## Resolution
+
+First, I checked the current IP address.
+
+```bash
+hostname -I
+```
+
+Then I updated the Windows Agent configuration file.
+
+```
+C:\Program Files (x86)\ossec-agent\ossec.conf
+```
+
+Inside the following section:
+
+```xml
+<server>
+    <address>NEW_MANAGER_IP</address>
+</server>
+```
+
+Finally, I restarted the agent.
+
+```cmd
+NET STOP WazuhSvc
+NET START WazuhSvc
+```
+
+The endpoint reconnected successfully.
+
+---
+
+# Useful Troubleshooting Commands
+
+## Check Wazuh Services
+
+```bash
+sudo systemctl status wazuh-manager
+sudo systemctl status wazuh-indexer
+sudo systemctl status wazuh-dashboard
+sudo systemctl status filebeat
+```
+
+---
+
+## View Manager Logs
+
+```bash
+sudo tail -f /var/ossec/logs/ossec.log
+```
+
+---
+
+## Check Ubuntu IP Address
+
+```bash
+hostname -I
+```
+
+---
+
+## Verify Windows Agent Service
+
+```powershell
+Get-Service WazuhSvc
+```
+
+---
+
+## Start Windows Agent
+
+```cmd
+NET START WazuhSvc
+```
+
+---
+
+## Check APT Processes
+
+```bash
+ps -ef | grep -E "apt|dpkg|unattended"
+```
+
+---
+
+# Lessons Learned
+
+Throughout this deployment, I learned several practical lessons that are useful when building a SIEM lab.
+
+- Ubuntu automatic updates can interrupt long package installations.
+- Verifying service status immediately after installation helps identify incomplete deployments.
+- Bridged networking is better suited than NAT for endpoint communication in a virtual lab.
+- DHCP-assigned IP addresses can change after a reboot, causing agents to disconnect.
+- Checking logs and service status is often more effective than immediately reinstalling software.
+
+Most of the issues I encountered were configuration-related rather than software failures. Understanding the underlying cause made troubleshooting much easier and improved my understanding of how the different Wazuh components communicate with each other.
