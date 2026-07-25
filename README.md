@@ -138,11 +138,10 @@ SIEM-Lab-Wazuh/
 │   ├── SIEM_Overview.md
 │   └── Wazuh_Architecture.md
 │
-02_Setup/
-├── Lab_Architecture.md
-├── Network_Configuration.md
-├── Wazuh_Requirements.md
-└── Challenges_and_Remediation.md
+├── 02_Setup/
+│   ├── Lab_Architecture.md
+│   ├── Network_Configuration.md
+│   └── Challenges_and_Remediation.md
 │
 ├── 03_Wazuh/
 │   ├── Installation.md
@@ -151,18 +150,14 @@ SIEM-Lab-Wazuh/
 │   ├── Configuration.md
 │   └── Troubleshooting.md
 │
-├── 04_Log_Analysis/
+├── 04_Detection_and_Analysis/
 │   ├── Windows_Event_Logs.md
-│   ├── Linux_System_Logs.md
 │   ├── Sysmon.md
-│   ├── Event_Correlation.md
-│   └── Alert_Analysis.md
+│   ├── Alert_Analysis.md
+│   └── Detection_Rules.md
 │
 ├── 05_CheatSheets/
-│   ├── Wazuh_Commands.md
-│   ├── Windows_Event_IDs.md
-│   ├── Sysmon_Event_IDs.md
-│   └── Linux_Log_Locations.md
+│   └── Wazuh_Commands.md
 │
 ├── Screenshots/
 │   ├── Installation/
@@ -170,7 +165,7 @@ SIEM-Lab-Wazuh/
 │   ├── Agents/
 │   └── Alerts/
 │
-└── Resources/
+└── References/
     └── References.md
 ```
 
