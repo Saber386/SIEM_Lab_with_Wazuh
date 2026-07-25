@@ -260,13 +260,10 @@ Dashboard Status
 
 # Screenshots
 
-> Insert screenshots sequentially
 
-1. Ubuntu Installation
-2. APT Lock Error
-3. Troubleshooting
-4. Successful Installation
-5. Dashboard Login
-6. Agent Deployment
-7. Active Windows Endpoint
+1. <img width="602" height="88" alt="Image" src="https://github.com/user-attachments/assets/4fed3360-da5a-4506-8f04-1b105999930c" />
+2. <img width="602" height="225" alt="Image" src="https://github.com/user-attachments/assets/9ef88647-dddc-41df-9561-4b379ed2051b" />
+3. <img width="602" height="328" alt="Image" src="https://github.com/user-attachments/assets/5a0aa147-1f5d-4218-925e-22cc40c2193e" />
+6. <img width="602" height="312" alt="Image" src="https://github.com/user-attachments/assets/1c29a6fb-b2e2-42e5-a7b4-d6791292a64b" />
+7. <img width="602" height="329" alt="Image" src="https://github.com/user-attachments/assets/d4f5d9e7-177e-4529-b68c-1ed44f51cea5" />
 
